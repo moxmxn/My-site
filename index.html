@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <title>My 3D Object</title>
+</head>
+<body>
+  <div id="container"></div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@latest/examples/js/loaders/GLTFLoader.js"></script>
+
+  <script>
+    // Set up the scene.
+    var scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0x808080 );
+
+    // Set up the camera
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    camera.position.z = -10;
+
+    // Set up the renderer
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+
+    // Load the GLTF object
+    var loader = new THREE.GLTFLoader();
+    loader.load( 'C:/Users/Bouguessa/Desktop/M/Studies/M2/W3D/THREE_JS-Import/object8.gltf', function ( gltf ) {
+      scene.add( gltf.scene );
+      animate();
+    } );
+
+    // Animate the scene
+    function animate() {
+      requestAnimationFrame( animate );
+      renderer.render( scene, camera );
+    }
+  </script>
+</body>
+</html>
